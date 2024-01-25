@@ -3,7 +3,8 @@ AND SGBSTDN_TERM_CODE_EFF = (SELECT MAX(A.SGBSTDN_TERM_CODE_EFF)
                                 WHERE A.SGBSTDN_PIDM = SFRSTCR_PIDM
                                   AND A.SGBSTDN_TERM_CODE_EFF >= 201910)
   and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM'); --important for filtering
-  
+
+
 AND SPRIDEN_CHANGE_IND IS NULL --spriden distincts
 
 select * from spriden; --first,last,middle names and CID
@@ -55,3 +56,9 @@ select * from sortest;--sortest_admr_code,sortest_tsrc_code
 select * from as_course_prereq;
 
 select * from szhegis; --CIP code stuff
+
+select * from rfrbase;
+
+select * from rprawrd;
+
+select * from STVCIPC; --CIP codes
