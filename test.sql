@@ -1,7 +1,13 @@
-select distinct shrtckg_pidm,shrtckg_term_code,shrtckg_grde_code_final,sfrstcr_term_code
+select distinct *
+from sfrstcr
+join ssbsect
+on sfrstcr_term_code=ssbsect_term_code;
+ --2874
 
-from shrtckg,shrtckn,sfrstcr
+union all
 
-where shrtckg_pidm=shrtckn_pidm
-and shrtckn_pidm=sfrstcr_pidm
-and sfrstcr_term_code=202010
+select distinct *
+from spbpers
+join sfrstcr
+on spbpers_pidm=sfrstcr_pidm
+

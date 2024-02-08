@@ -2,16 +2,17 @@ AND SGBSTDN_TERM_CODE_EFF = (SELECT MAX(A.SGBSTDN_TERM_CODE_EFF)
                                 FROM SGBSTDN A
                                 WHERE A.SGBSTDN_PIDM = SFRSTCR_PIDM
                                   AND A.SGBSTDN_TERM_CODE_EFF >= 201910)
-  and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM'); --important for filtering
+
+and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM'); --important for filtering
 
 
 AND SPRIDEN_CHANGE_IND IS NULL --spriden distincts
 
 select * from spriden; --first,last,middle names and CID
 
-select * from sfrstcr; --term code and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM') sfrstcr_grde_code
+select * from sfrstcr; --term code and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM'), sfrstcr_grde_code
 
-select * from sgbstdn; --Term code and student type
+select * from sgbstdn; --Term code and student type - sgbstdn_styp_code
 
 select * from stvstyp; --for student type
 
@@ -35,9 +36,11 @@ select * from sgrchrt;
 
 select * from stvchrt;
 
-select * from shrlgpa; --for GPA
+select * from shrlgpa; --for GPA, shrlgpa_gpa_type_ind, shrlgpa_hours_earned, shrlgpa_activity_date
 
-select * from szhegis;--Curriculum code
+select * from shrtgpa; --might be better for GPA hours earned
+
+select * from szhegis;--Curriculum code shrlgpa_activity_date= 21-AUG-15
 
 select * from ssrmeet;--room locations and meet times
 
@@ -62,3 +65,11 @@ select * from rfrbase;
 select * from rprawrd;
 
 select * from STVCIPC; --CIP codes
+
+select * from gobtpac; --gobtpac_external_user for email username
+
+select * from sarappd; --admissions application: saraappd_apdc_code CC means accepted
+
+select * from SOVETRM;
+
+select * from STVGPAT;--LIFE shcholarship stuff

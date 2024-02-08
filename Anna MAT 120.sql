@@ -20,5 +20,7 @@ AND SGBSTDN_TERM_CODE_EFF = (SELECT MAX(A.SGBSTDN_TERM_CODE_EFF)
   and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM')
 
 and shrtckn_term_code = 202010
+
+order by shrtckn_term_code
 --and shrtckn_subj_code='MAT'
 --and shrtckn_crse_numb ='120'
