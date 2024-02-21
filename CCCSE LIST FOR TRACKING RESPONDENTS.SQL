@@ -1,6 +1,6 @@
 SELECT "q01".*
 
-FROM (
+FROM ( --remove SELECT and FROM (
 select distinct
 SFRSTCR_TERM_CODE,SSBSECT_CRN,GOBTPAC_EXTERNAL_USER,SGBSTDN_STYP_CODE,
 SGBSTDN_TERM_CODE_EFF,SPRIDEN_LAST_NAME,
@@ -54,7 +54,6 @@ AND SGBSTDN_TERM_CODE_EFF = (SELECT MAX(A.SGBSTDN_TERM_CODE_EFF)
                                 FROM SGBSTDN A
                                 WHERE A.SGBSTDN_PIDM = SFRSTCR_PIDM
                                   AND A.SGBSTDN_TERM_CODE_EFF <= SFRSTCR_TERM_CODE)
-) "q01"
+) "q01" --remove last AS rename in quotes here. Change the first WHERE to AND to attach it to the main query
+
 WHERE SSBSECT_CAMP_CODE != 'H' AND SGBSTDN_STYP_CODE != 'D'
-AND 1=1
- --students need to be 18 years old or above
