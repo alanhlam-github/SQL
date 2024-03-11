@@ -3,79 +3,98 @@ AND SGBSTDN_TERM_CODE_EFF = (SELECT MAX(A.SGBSTDN_TERM_CODE_EFF)
                                 WHERE A.SGBSTDN_PIDM = SFRSTCR_PIDM
                                   AND A.SGBSTDN_TERM_CODE_EFF >= SFRSTCR_TERM_CODE)
 
-and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM'); --important for filtering
+AND SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM'); --important for filtering
 
 
 AND SPRIDEN_CHANGE_IND IS NULL --spriden distincts
 
-select * from sirasgn; -- SIRASGN_TERM_CODE,SIRASGN_CRN,SIRASGN_PRIMARY_IND
+SELECT * FROM SIRASGN; -- SIRASGN_TERM_CODE,SIRASGN_CRN,SIRASGN_PRIMARY_IND
 
-select * from spriden; --first,last,middle names and CID
+SELECT * FROM SPRIDEN; --first,last,middle names and CID
 
-select * from sfrstcr; --term code and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM'), sfrstcr_grde_code
+SELECT * FROM SFRSTCR; --term code and SFRSTCR_RSTS_CODE IN ('RE','RW','AU','AW','WS','WM'), sfrstcr_grde_code
 
-select * from sgbstdn; --Term code and student type - sgbstdn_styp_code
+SELECT * FROM SFRSTCA;
 
-select * from stvstyp; --for student type
+SELECT * FROM SGBSTDN; --Term code and student type - sgbstdn_styp_code
+--STVCOLL_CODE=SGBSTDN_COLL_CODE_1
 
-select * from spbpers; --SSN,DOB, and ethnicity
+SELECT * FROM STVSTYP; --for student type
 
-select * from SHRDGMR; --AW for awarded degree
+SELECT * FROM SPBPERS; --SSN,DOB, and ethnicity
 
-select * from stvmajr; --majors
+SELECT * FROM SHRDGMR; --AW for awarded degree,SHRDGMR_GRAD_DATE == '15-OCT-22'
 
-select * from stvvetc;--veteran GI Bill certs
+SELECT * FROM STVMAJR; --majors
 
-select * from sgrvetn; --veteran stuff 2
+SELECT * FROM STVVETC;--veteran GI Bill certs
 
-select * from rovvetn; --veteran stuff 3
+SELECT * FROM SGRVETN; --veteran stuff 2
 
-select * from ssbsect;--course subjects info - SSBSECT_SUBJ_CODE,SSBSECT_CRSE_NUMB,SSBSECT_SEQ_NUMB
+SELECT * FROM ROVVETN; --veteran stuff 3
 
+SELECT * FROM SSBSECT;--course subjects info - SSBSECT_SUBJ_CODE,SSBSECT_CRSE_NUMB,SSBSECT_SEQ_NUMB
+--SSBSECT_ENRL and SEATS_AVAIL?
+SELECT * FROM SSRMEET;--room locations and meet times - SSRMEET_BEGIN_TIME,SSRMEET_END_TIME,SSRMEET_BLDG_CODE,SSRMEET_ROOM_CODE
 --SSBSECT_CAMP_CODE,SSBSECT_ENRL
 
 --(+) is like a left join, NVL(sgbstdn_sess_code, 'Not Military') like IF
 
-select * from sgrchrt;
+SELECT * FROM SGRCHRT;
 
-select * from stvchrt;
+SELECT * FROM STVCHRT;
 
-select * from shrlgpa; --for GPA, shrlgpa_gpa_type_ind, shrlgpa_hours_earned, shrlgpa_activity_date
+SELECT * FROM SHRLGPA; --for GPA, shrlgpa_gpa_type_ind, shrlgpa_hours_earned, shrlgpa_activity_date
 
-select * from shrtgpa; --might be better for GPA hours earned
+SELECT * FROM SHRTGPA; --might be better for GPA hours earned
 
-select * from szhegis;--Curriculum code shrlgpa_activity_date= 21-AUG-15
+SELECT * FROM SZHEGIS;--Curriculum code shrlgpa_activity_date= 21-AUG-15
 
-select * from ssrmeet;--room locations and meet times - SSRMEET_BEGIN_TIME,SSRMEET_END_TIME,SSRMEET_BLDG_CODE,SSRMEET_ROOM_CODE
+SELECT * FROM SPRADDR; --addresses spraddr_cnty_code
 
-select * from spraddr; --addresses spraddr_cnty_code
+SELECT STVCNTY_CODE,STVCNTY_DESC FROM STVCNTY;--county names
 
-select stvcnty_code,stvcnty_desc from stvcnty;--county names
+SELECT * FROM SHRTCKN;--course subj code
 
-select * from shrtckn;--course subj code
+SELECT * FROM SORHSCH;
 
-select * from sorhsch;
+SELECT * FROM SHRTCKG; --shrtckcn cousin, gives SHRTCKG_CODE_FINAL
 
-select * from shrtckg; --shrtckcn cousin, gives SHRTCKG_CODE_FINAL
+SELECT * FROM SORTEST;--sortest_admr_code,sortest_tsrc_code
 
-select * from sortest;--sortest_admr_code,sortest_tsrc_code
+SELECT * FROM AS_COURSE_PREREQ;
 
-select * from as_course_prereq;
+SELECT * FROM SZHEGIS; --CIP code stuff
 
-select * from szhegis; --CIP code stuff
+SELECT * FROM RFRBASE;
 
-select * from rfrbase;
+SELECT * FROM RPRAWRD;
 
-select * from rprawrd;
+SELECT * FROM STVCIPC; --CIP codes
 
-select * from STVCIPC; --CIP codes
+SELECT * FROM GOBTPAC; --gobtpac_external_user for email username
 
-select * from gobtpac; --gobtpac_external_user for email username
+SELECT * FROM SARAPPD; --admissions application: saraappd_apdc_code CC means accepted
 
-select * from sarappd; --admissions application: saraappd_apdc_code CC means accepted
+SELECT * FROM SOVETRM;
 
-select * from SOVETRM;
+SELECT * FROM STVGPAT;--LIFE shcholarship stuff
 
-select * from STVGPAT;--LIFE shcholarship stuff
+SELECT * FROM STVTERM;
 
-select * from stvterm;
+SELECT * FROM SCBCRSE;--SCBCRSE_COLL_CODE
+--SCBCRSE_EFF_TERM
+SELECT * FROM STVCOLL;
+SELECT * FROM SSBSECT;
+
+SELECT * FROM STVTMST;--Full/Part Time Status Validation Table; STVTMST_CODE FOR JOINING, DESC FOR TITLE
+
+SELECT * FROM SFRTMSL;--FULL/PART TIME STATUS LEVEL CODE - SFRTMSL_TMST_CODE,SFRTMSL_TERM_CODE_EFF
+
+SELECT * FROM SFRTMST;--same as SFRTMSL?
+
+SELECT * FROM SIRATTR; --faculty full time/part time stuff
+
+SELECT * FROM STVCAMP;
+
+SELECT * FROM STVDEPT; --DEPT NAME DESC STVDEPT_CODE
