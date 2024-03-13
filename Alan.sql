@@ -98,3 +98,9 @@ SELECT * FROM SIRATTR; --faculty full time/part time stuff
 SELECT * FROM STVCAMP;
 
 SELECT * FROM STVDEPT; --DEPT NAME DESC STVDEPT_CODE
+
+SELECT * FROM SPRHOLD; --Person Related Holds Repeating Table
+
+SELECT * FROM STVHLDD;--Person Hold Type Validation Table
+
+SELECT * FROM SARADAP; -- ADMISSIONS TABLE
